@@ -10,4 +10,6 @@ test("renders the login header"),
   () => {
     const { getByText } = render(<App />);
     const header = getByText(/login to water your plants/i);
+
+    expect(header).toBeTruthy();
   };
