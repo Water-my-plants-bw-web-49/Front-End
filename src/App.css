@@ -36,9 +36,15 @@
     transform: rotate(360deg);
   }
 }
-.signup-dev {
+.nav-bar {
   height: 50px;
   width: 100%;
   background-color: #4d4d4d;
   position: relative;
+}
+.right-links {
+  padding: 13px 10px 13px 10px;
+}
+.left-links {
+  padding: 13px 10px 13px 10px;
 }
