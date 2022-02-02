@@ -72,3 +72,9 @@ nav {
     transform: rotate(360deg);
   }
 }
+.signup-dev {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: relative;
+}
