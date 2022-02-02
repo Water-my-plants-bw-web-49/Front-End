@@ -2,6 +2,37 @@
   background-color: #2a2a72;
   background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: large;
+  text-shadow: 2px 2px 4px #000000;
+  border-radius: 4px;
+  padding: 2px, 4px;
+  margin-top: 2px;
+}
+.link:hover {
+  color: green;
+  text-decoration: none;
+  font-size: large;
+  text-shadow: 2px 2px 4px #000000;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+.login {
+  color: white;
+  text-shadow: 4px 4px 8px #000000;
+}
+
+.home {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
 
 .App {
   text-align: center;
