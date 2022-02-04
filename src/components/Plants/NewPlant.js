@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Button from './Button'
 import {FormContainer} from './FormContainer'
 
@@ -23,6 +24,15 @@ const initialState = {
   
     const handleSubmit = (e) => {
       e.preventDefault();
+
+      axiosWithAuth('https://water-my-plants-08.herokuapp.com/api/plants')
+      .post(`/api/users/${localStorage.getItem("user")}/plants`, formValues)
+      .then(res => {
+        console.log('New Plant: ', res);
+        push('/plants');
+      })
+      .catch(err => console.log(err.response))
+
       setFormValues(initialState);
       setDisabled(true);
     };
