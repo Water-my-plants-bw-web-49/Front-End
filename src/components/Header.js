@@ -18,9 +18,14 @@ const Header = () => {
                 {
                     isLoggedIn ? <Link className="link" to='/logout'>Logout</Link> : ''
                 }
-
                 {
                     isLoggedIn ? <Link className="link" to='/postitem'>Post</Link>: ''
+                }
+                {
+                    isLoggedIn ? <Link className="link" to='/'>Create Plant</Link>: ''
+                }
+                {
+                    isLoggedIn ? <Link className="link" to='/'>Edit Plant</Link>: ''
                 }
                 
                 
