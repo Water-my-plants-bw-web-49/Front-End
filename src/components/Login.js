@@ -1,80 +1,86 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import validation from "../validation/validation";
-
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Login = () => {
+export default function Login() {
+  // Creating a useState for values with the default value set to an empty string
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
-  const [errors, setErrors] = useState({});
+// Sets push to useHistory, this well be used later below
   const { push } = useHistory();
-
-  const formSubmit = (e) => {
-    e.preventDefault();
-    setErrors(validation(values));
-    e.preventDefault();
-    axios
-      .post(
-        "https://bw-water-my-plants-backend.herokuapp.com/api/auth/login",
-        values
-      )
-      .then((resp) => {
-        console.log("login : resp = ", resp);
-        console.log("login : resp.data = ", resp.data.token);
-        localStorage.setItem("token", resp.data.token);
-        push("/products"); //Change after making the plants page
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const inputChange = (evt) => {
+// This onChange captures any change within the element without it we would not be able to register our text within the forms for username and password below
+  const onChange = (e) => {
+    //Setting the values useState "values?"
     setValues({
       ...values,
-      [evt.target.name]: evt.target.value,
+      [e.target.name]: e.target.value,
     });
   };
+  //Username and password must be more than 0 characters.
+  function validateForm() {
+    return values.username.length > 0 && values.password.length > 0;
+  }
+//Essentially means when this is submitted what should it do.
+  function handleSubmit(event) {
+    // Keeps the page from refreshing.
+    event.preventDefault();
+    // When submitted post to the login api
+    axios
+      .post(
+        "https://water-my-plants-08.herokuapp.com/api/auth/login",
+        values
+      )
+      // Set a token for the local user, so said user can have proper authentication to login.
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        // Pushes the user to the plant page.
+        push("/plants");
+        // This reloads the page, because without a reload the login button would stay. Remove and try to login.
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   return (
-    <div className="login-dev">
-      <div className="box">
-        <div className="app-wrap">
-          <h1 className="login">Login</h1>
-        </div>
-        <form className="form-wrap">
-          <label>
-            {errors.name && <p className="error">{errors.name}</p>}
-            <input
-              type="text"
-              placeholder="Username"
-              className="iput"
-              name="username"
-              value={values.username}
-              onChange={inputChange}
-            />
-          </label>
-          <label>
-            {errors.password && <p className="error">{errors.password}</p>}
-            <input
-              type="text"
-              placeholder="Password"
-              className="iput"
-              name="password"
-              value={values.password}
-              onChange={inputChange}
-            />
-          </label>
-        </form>
-        <div>
-          <button className="button" onClick={formSubmit}>
-            Login
-          </button>
-        </div>
-      </div>
+    <div className="container">
+      {/* Creates a form that when submitted uses the above handleSubmit function */}
+      <form onSubmit={handleSubmit} className="register-form">
+        <h1>Login</h1>
+          <div className='form-group'>
+            {/* This is the username portion of the login form */}
+            <label htmlFor="username">Username</label>
+              <input
+              // The type of form is a text form
+                type="text"
+                id="user-input"
+                // This is used form our useState
+                name="username"
+                value={values.username}
+                // Whenever something is typed the onChnage recognizes the change and displays the value of what the user typed.
+                onChange={onChange}
+              />
+              {/* This is the password portion of the login form */}
+              <label htmlFor="password">Password</label>
+              <input
+              // The type of form is a password form, which censors out the text like a password should.
+                type="password"
+                id="pass-input"
+                // This is used form our useState
+                name="password"
+                value={values.password}
+                // Whenever something is typed the onChnage recognizes the change and displays the value of what the user typed.
+                onChange={onChange}
+              />
+          </div>
+          {/* This login button is disabled until you type in a character in each field. */}
+        <button disabled={!validateForm()} className='login-button'>Login</button>
+      </form>
+
     </div>
   );
-};
-export default Login;
+}

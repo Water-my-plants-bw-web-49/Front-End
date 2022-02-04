@@ -1,39 +1,9 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@500&display=swap');
+/* Font */
 * {
-  background-color: #2a2a72;
-  background-image: linear-gradient(degrees 315, #2a2a72 10%, #009ffd 74%);
+  font-family: 'Domine', serif;
 }
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.link {
-  color: white;
-  text-decoration: none;
-  font-size: large;
-  text-shadow: 2px 2px 4px #000000;
-  border-radius: 4px;
-  padding: 2px, 4px;
-  margin-top: 2px;
-}
-.link:hover {
-  color: green;
-  text-decoration: none;
-  font-size: large;
-  text-shadow: 2px 2px 4px #000000;
-  border-radius: 10px;
-  text-transform: uppercase;
-}
-.login {
-  color: white;
-  text-shadow: 4px 4px 8px #000000;
-}
-
-.home {
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-}
-
 .App {
   text-align: center;
 }
@@ -43,94 +13,134 @@ nav {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ebebe4;
+    padding-top: 1%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.left-links a {
+    text-decoration: none;
+    color: black;
+    font-size: 2vw;
+    padding: 1%;
+}
+
+button {
+  background-color: #008441;
+  border: none;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.signup-dev {
-  height: 50px;
-  width: 100%;
-  background-color: #4d4d4d;
-  position: relative;
-}
-
-.button {
-  margin-top: 20px;
-  border-radius: 5px;
-  align-items: center;
-  background-color: #06f;
-  border: 1px solid grey;
-  box-sizing: border-box;
-  color: #fff;
   cursor: pointer;
-  display: inline-flex;
-  fill: #000;
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  height: 48px;
-  justify-content: center;
-  letter-spacing: -0.8px;
-  line-height: 24px;
-  min-width: 140px;
-  outline: 0;
-  padding: 0 17px;
+  padding: 10px 24px;
   text-align: center;
   text-decoration: none;
-  transition: all 0.3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  text-shadow: 2px, 2px, 4px;
+  width: 50%;
+  font-size: 16px;
 }
 
-.button:focus {
-  color: #171e29;
+.container {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
 }
 
-.button:hover {
-  background-color: #3385ff;
-  border-color: #3385ff;
-  fill: #06f;
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.button:active {
-  background-color: #3385ff;
-  border-color: #3385ff;
-  fill: #06f;
+#submit-button, .add-plant-button, .register-button, .login-button {
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@media (min-width: 768px) {
-  .button {
-    min-width: 170px;
-  }
+.right-links {
+  width: 10%;
 }
-.iput {
+
+
+.left-links {
+  width: 30vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.form-group label {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  max-width: 50%;
+}
+
+#plant-input, #species-input, #nickname-input, #h2ofrequency-input, #user-input, #pass-input, #pnumber-input {
+  margin-left: 20%;
+  margin-right: 20%;
+  max-width: 80%;
+}
+
+/* ***** plant.JS CSS ***** */
+.plants-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 2%;
+}
+
+.plant {
+  margin-top: 2%;
+  width: 30vw;
+  background-color: #e3e3e3;
+}
+
+img {
+  width: 50%;
+}
+
+/* ***** END OF plant.js CSS ***** */
+
+.homeInfo {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5%;
+}
+
+.homeInfo h2 {
+  font-size: 2.5vw;
+}
+.homeInfo p {
+  font-size: 1.2vw;
+}
+
+.homeInfo button {
+  background-color: #00ab84;
+  color: aliceblue;
+  border: none;
+  width: 10vw;
+  height: 7vh;
+  font-size: 1.5vw ;
+}
+.something {
+  display: flex;
+  background-color: #ebebe4;
+  padding: 7% 0;
   text-align: left;
-  margin-left: 5px;
 }
+
+.something img {
+  width: 40vw;
+}
+
+
