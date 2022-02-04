@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from './Button'
 import {FormContainer} from './FormContainer'
+import {axiosWithAuth} from "../utils/axiosWithAuth"
 
 const EditPlant = (props) => {
     const {push} = useHistory();
@@ -15,6 +16,23 @@ const EditPlant = (props) => {
     const { plantId } = useParams()
     const userID = localStorage.getItem("user")
 
+    useEffect(()=>{
+        axiosWithAuth(" https://water-my-plants-08.herokuapp.com/api/plants ")
+        .get(`/api/users/${userID}/plants/${plantId}`)
+        .then((res)=>{
+            console.log(res)
+            setPlant({
+                ...plant,
+                species: res.data[0].species,
+                nickname: res.data[0].nickname,
+                water_frequency: res.data[0].water_frequency
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }, [])
+
     const handleChange = (e) => {
         setPlant({
             ...plant,
@@ -22,6 +40,18 @@ const EditPlant = (props) => {
         })
     }
     
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        axiosWithAuth(" https://water-my-plants-08.herokuapp.com/api/plants ")
+        .put(`/api/users/${userID}/plants/${plantId}`, plant)
+        .then((res)=>{
+            push(`/plant/${plantId}`)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
 
     return(
         <FormContainer>
